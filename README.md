@@ -1,4 +1,4 @@
-Name Irc::Art
+Name IRC::Art
 =============
 
 Synopsis
@@ -8,7 +8,7 @@ Synopsis
     use YourFavoriteIrcClient;
 
     my $art = IRC::Art.new(4, 4); # A 4x4
-    $art.rectangle(0, 0, 3, 3, color(4)); #draw a red square
+    $art.rectangle(0, 0, 3, 3, :color(4)); #draw a red square
     $art.text("6.c", 1, 1, :color(13), :bold); # put the 6.c text starting at 1,1
     for $art.result {
       $irc.send-message('#perl6', $_);
@@ -17,42 +17,44 @@ Synopsis
 Description
 ===========
 
-IRC::Art offer you a way to create basic art on IRC. It work mainly like a small graphic library with method to "draw" pixel, text or rectangle.
+IRC::Art offers you a way to create basic art on IRC. It works mainly like a small graphics library with a method to "draw" pixel, text or rectangle.
 
 Usage
 =====
 
-Create an `IRC::Art` object and use the various drawing method on it.  Every change override the previous of the canvas execpt for the text method.
+Create an `IRC::Art` object and use the various drawing methods on it. Every change writes over the existing data on the canvas, except for the text method.
 
 new(?width, ?height)
 --------------------
 
-Create a new canvas filled with space according to the width and height information.
+Create a new canvas filled with blanks, sized according to the width and
+height information.
 
 result
 ------
 
-returns the canvas as an array of irc string. so you can easily put in a loop to send message
+Returns the canvas as an array of irc strings that you can put in a loop to
+send the art.
 
 Str
 ---
 
-The `Str` method return the first row of the canvas as a single string.
+The `Str` method returns the first row of the canvas as a single string.
 
 pixel($x, $y, :$color, $clear)
 ------------------------------
 
-put or clear the pixel at the given x/y coordonate
+Place or clear the pixel at the given x/y coordinate
 
 rectangle($x1, $y1, $x2, $y2, :$color, $clear)
 ----------------------------------------------
 
-put or clear a rectangle of pixel from x1/y1 to x2/y2 corners
+Place or clear a rectangle of pixels from x1/y1 to x2/y2 corners
 
 text($text, $x, $y, :$color, $bold, $bg)
 ----------------------------------------
 
-Put some text starting at the x/y coordonates.
+Place some text, starting at the x/y coordonates.
 
 $color is the color of the text
 
@@ -61,12 +63,12 @@ $bg is the color of the background
 save($filename) load($filename)
 -------------------------------
 
-Save in a perl6 format the canvas. Use load to load it
+Save the canvas in a perl6 format. Use load to load it.
 
 Colors
 ======
 
-These color are mainly indicative, it depends too much on the irc client configuration.
+These colors are mainly indicative, it depends too much on the irc client configuration.
 
     0 : light grey
     1 : Black
