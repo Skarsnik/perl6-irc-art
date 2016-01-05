@@ -1,6 +1,6 @@
 =begin pod
 
-=head1 Name Irc::Art
+=head1 Name IRC::Art
 
 =head1 Synopsis
 
@@ -8,7 +8,7 @@
   use YourFavoriteIrcClient;
   
   my $art = IRC::Art.new(4, 4); # A 4x4
-  $art.rectangle(0, 0, 3, 3, color(4)); #draw a red square
+  $art.rectangle(0, 0, 3, 3, :color(4)); #draw a red square
   $art.text("6.c", 1, 1, :color(13), :bold); # put the 6.c text starting at 1,1
   for $art.result {
     $irc.send-message('#perl6', $_);
@@ -16,13 +16,13 @@
 
 =head1 Description
 
-IRC::Art offer you a way to create basic art on IRC. It work mainly like a small graphic library
-with method to "draw" pixel, text or rectangle.
+IRC::Art offers you a way to create basic art on IRC. It works mainly like a small graphics library
+with methods to "draw" like pixel, text or rectangle.
 
 =head1 Usage
 
-Create an C<IRC::Art> object and use the various drawing method on it. 
-Every change override the previous of the canvas execpt for the text method.
+Create an C<IRC::Art> object and use the various drawing methods on it. 
+Every change writes over the previous of the existing execpt for the text method.
 
 
 =end pod
@@ -36,7 +36,8 @@ class IRC::Art {
 =begin pod
 =head2 new(?width, ?height)
   
-Create a new canvas filled with space according to the width and height information.
+Create a new canvas filled with blanks (space), sized according to the width and
+height information.
   
 =end pod
 
@@ -62,8 +63,8 @@ Create a new canvas filled with space according to the width and height informat
 =begin pod
 =head2 result
 
-returns the canvas as an array of irc string. so you can easily put in a loop to send message
-
+Returns the canvas as an array of irc strings that you can put in a loop to
+send the art.
 =end pod
 
   method result {
@@ -73,7 +74,7 @@ returns the canvas as an array of irc string. so you can easily put in a loop to
 =begin pod
 =head2 Str
 
-The C<Str> method return the first row of the canvas as a single string.
+The C<Str> method returns the first row of the canvas as a single string.
 
 =end pod
 
@@ -84,7 +85,7 @@ The C<Str> method return the first row of the canvas as a single string.
 =begin pod
 =head2 pixel($x, $y, :$color, $clear)
 
-put or clear the pixel at the given x/y coordonate
+Place or clear the pixel at the given x/y coordinate
 
 =end pod
   method pixel($x, $y, :$color, :$clear) {
@@ -99,7 +100,7 @@ put or clear the pixel at the given x/y coordonate
 =begin pod
 =head2 rectangle($x1, $y1, $x2, $y2, :$color, $clear)
 
-put or clear a rectangle of pixel from x1/y1 to x2/y2 corners
+Place or clear a rectangle of pixels from x1/y1 to x2/y2 corners
 
 =end pod
 
@@ -114,7 +115,7 @@ put or clear a rectangle of pixel from x1/y1 to x2/y2 corners
 =begin pod
 =head2 text($text, $x, $y, :$color, $bold, $bg)
 
-Put some text starting at the x/y coordonates.
+Place some text, starting at the x/y coordonates.
 
 $color is the color of the text
 
@@ -170,7 +171,7 @@ $bg is the color of the background
 =begin pod
 =head2 save($filename) load($filename)
 
-Save in a perl6 format the canvas. Use load to load it
+Save the canvas in a Perl 6. Use load to load it.
 
 =end pod
 
